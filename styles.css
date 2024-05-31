@@ -1,4 +1,27 @@
+:root
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 body
 {
     background-color: rgb(234, 234, 234);
+}
+dialog
+{
+    padding: 50px 70px;
+}
+.container
+{
+    padding-bottom: 30px;
+}
+#form-lines div
+{
+    padding-bottom: 20px;
+}
+#add-book
+{
+    font-size: 32px;
+    background-color: #EEEEEE;
+    border: 2px solid #373A40;
+    width: 100%;
 }
