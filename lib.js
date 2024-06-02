@@ -104,7 +104,7 @@ function DisplayBook(displayedBook)
     });
 
     //add elements to div
-    main.appendChild(card);
+    main.appendChild(card); 
     card.appendChild(cardTitle);
     card.appendChild(cardAuthor);
     card.appendChild(cardPages);
