@@ -2,27 +2,6 @@ const myLibrary = [];
 const addBook = document.getElementById("add-book");
 const dialogWindow = document.querySelector("dialog");
 
-function Book(title, author, pages, isRead)
-{
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-}
-
-function addBookToLibrary(book)
-{
-    myLibrary.push(book);
-}
-
-function displayLibrary()
-{
-    for(let i = 0; i < myLibrary.length; i++)
-    {
-        console.log(myLibrary[i].title + " by " + myLibrary[i].author + ". " + myLibrary[i].pages + " pages long. Read: " + myLibrary[i].isRead);
-    }
-}
-
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
@@ -31,12 +10,40 @@ const isRead = document.querySelector("#isRead");
 const submitButton = document.querySelector("#submit");
 const main = document.querySelector(".container2");
 
+class Book
+{
+    constructor(title, author, pages, isRead)
+    {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+    static addBookToLibrary(book)
+    {
+        myLibrary.push(book);
+    }
+    static displayLibrary()
+    {
+        for(let i = 0; i < myLibrary.length; i++)
+        {
+            console.log(myLibrary[i].title + " by " + myLibrary[i].author + ". " + myLibrary[i].pages + " pages long. Read: " + myLibrary[i].isRead);
+        }
+    }
+    static ClearFields()
+    {
+        title.value = "";
+        author.value = "";
+        pages.value = "";
+        isRead.checked = false;
+    }
+}
 addBook.addEventListener("click", () => 
 {
     console.log("Adding Book...");
 
     //clear fields
-    ClearFields();
+    Book.ClearFields();
 
     //display window
     dialogWindow.showModal();
@@ -50,23 +57,15 @@ submitButton.addEventListener("click", () =>
         console.log("Added book!");
         //add book to library
         let bookToAdd = new Book(title.value, author.value, pages.value, isRead.checked);
-        addBookToLibrary(bookToAdd);
+        Book.addBookToLibrary(bookToAdd);
         //print library
-        displayLibrary();
+        Book.displayLibrary();
         console.log(bookToAdd.title + "..." + bookToAdd.isRead);
 
         //add book card
         DisplayBook(bookToAdd);
     }
 });
-
-function ClearFields()
-{
-    title.value = "";
-    author.value = "";
-    pages.value = "";
-    isRead.checked = false;
-}
 function DisplayBook(displayedBook)
 {
     const card = document.createElement("div");
